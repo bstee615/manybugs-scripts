@@ -1,19 +1,44 @@
+#!/bin/python3
+
 import mechanize
 from time import sleep
+import sys
+import os
 
+# Directory name to load zips
+TAR_GZ_BASE = 'bugs'
+
+# Load requested versions from stdin
+versions = []
+for line in sys.stdin:
+    version = line.strip()
+    versions.append(version)
+print(len(versions), 'versions loaded')
+
+# Load links for the requested versions
 b = mechanize.Browser()
-
 b.open('https://repairbenchmarks.cs.umass.edu/ManyBugs/scenarios/')
 page = b.response().read()
 files = []
 for link in b.links():
     if '.tar.gz' in str(link):
-        print(link, 'added')
-        files.append(link)
+        if any(v for v in versions if v in link.url):
+            print(link.url, 'added')
+            files.append(link)
+        else:
+            print('link', link, 'not requested')
+print(len(files), 'links loaded')
 
+# Account for the versions not loaded
+not_loaded = [v for v in versions if not any(l for l in files if v in l.url)]
+if len(not_loaded) > 0:
+    print('ERROR', len(not_loaded), 'versions not loaded:', not_loaded)
+    exit(1)
+
+# Download successfully loaded versions
 for link in files:
     sleep(1)
-    with open(link.url.split('/')[-1], 'wb') as f:
-        b.click_link(link)
-        f.write(b.response().read())
-        print(link.text, 'downloaded')
+    src = os.path.join(link.base_url, link.url)
+    dst = os.path.join(TAR_GZ_BASE, link.url)
+    b.retrieve(src, dst)
+    print(src, 'downloaded')
