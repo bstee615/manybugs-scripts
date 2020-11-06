@@ -65,7 +65,7 @@ def download(versions):
 
 bugsdir = download(list(df['name']))
 FORCE = False
-failed = []
+failed = {}
 
 for index, row in df.iterrows():
     name = row['name']
@@ -88,7 +88,8 @@ for index, row in df.iterrows():
         assert(re.match(rf'^(/[^/]+)+/{project}-bug-[^/]+/{project}$', str(projectdir.absolute())))
     except Exception as ex:
         print(f'{name} failed to unpack!', ex)
-        failed.append(name)
+        failed[name]=ex
+        continue
 
     try:
         print(f'git reset...')
@@ -99,7 +100,8 @@ for index, row in df.iterrows():
             print(f'*skipping git reset {projectdir}...')
     except Exception as ex:
         print(f'{name} failed git reset!', ex)
-        failed.append(name)
+        failed[name]=ex
+        continue
 
     try:
         print(f'hg revert...')
@@ -111,7 +113,8 @@ for index, row in df.iterrows():
             print(f'*skipping hg revert {projectdir}...')
     except Exception as ex:
         print(f'{name} failed git reset!', ex)
-        failed.append(name)
+        failed[name]=ex
+        continue
     
     try:
         print(f'diff reset...')
@@ -133,7 +136,8 @@ for index, row in df.iterrows():
             print(f'*skipping diffs reset {diffsdir}...')
     except Exception as ex:
         print(f'{name} failed diff reset!', ex)
-        failed.append(name)
+        failed[name]=ex
+        continue
 
     try:
         print(f'preprocessing...')
@@ -145,6 +149,9 @@ for index, row in df.iterrows():
             print(f'*skipping preprocess {diffsdir}...')
     except Exception as ex:
         print(f'{name} failed preprocess!', ex)
-        failed.append(name)
+        failed[name]=ex
+        continue
 
-print(len(failed), 'failed.', ','.join(failed))
+print(len(failed), 'failed.', ','.join(failed.keys()))
+for name, ex in failed.items():
+    print(name, ':', ex)
