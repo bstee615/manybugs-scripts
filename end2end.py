@@ -102,6 +102,18 @@ for index, row in df.iterrows():
         failed.append(name)
     
     try:
+        print(f'hg revert...')
+
+        if (projectdir / '.hg').is_dir():
+            print(f'*hg revert {projectdir}')
+            subprocess.check_call(['hg', 'revert', '--all'], cwd=projectdir)
+        else:
+            print(f'*skipping hg revert {projectdir}...')
+    except Exception as ex:
+        print(f'{name} failed git reset!', ex)
+        failed.append(name)
+    
+    try:
         print(f'diff reset...')
         diffsdir = scenariodir / 'diffs'
         if diffsdir.is_dir():
