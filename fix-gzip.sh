@@ -4,13 +4,13 @@
 
 function quit()
 {
-    if [ -z $1 ]
+    if [ -z "$1" ]
     then
         echo 'Error!'
     else
         echo $1
     fi
-    exit
+    exit 1
 }
 
 function fix_it()
@@ -42,10 +42,10 @@ then
     exit
 fi
 
-echo Running make clean...
-make clean &> /dev/null || quit "ERROR running make clean!"
 echo Running ./configure...
 ./configure &> /dev/null || quit "ERROR running ./configure!"
+echo Running make clean...
+make clean &> /dev/null || quit "ERROR running make clean!"
 echo Running make and fixing library problems...
 (make &> /dev/null || fix_it) || quit "ERROR preparing for make!"
 
