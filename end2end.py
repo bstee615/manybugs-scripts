@@ -71,7 +71,7 @@ for index, row in df.iterrows():
     name = row['name']
     project = name.split('-')[0]
 
-    print(f'{name}')
+    print(f'***{name}')
 
     try:
         print(f'unpack...')
@@ -131,4 +131,4 @@ for index, row in df.iterrows():
         print(f'{name} failed preprocess!', ex)
         failed.append(name)
 
-print(len(failed), 'failed:', ','.join(failed))
+print(len(failed), 'failed.', ','.join(failed))
