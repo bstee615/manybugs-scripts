@@ -12,6 +12,12 @@ import sys
 # End-to-end prepare all ManyBugs benchmarks
 
 df = pandas.read_csv('versions.csv', header=0)
+filtered = []
+if len(sys.argv) > 1:
+    for name_regex in sys.argv[1].split(','):
+        name_regex = f'^{name_regex}'
+        filtered.append(df.loc[df.name.str.contains(name_regex), :])
+df = pandas.concat(filtered)
 
 # Directory name to load zips
 TAR_GZ_BASE = Path('bugs')
