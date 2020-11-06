@@ -8,5 +8,5 @@ function quit()
     else
         echo $1
     fi
-    exit
+    exit 1
 }
