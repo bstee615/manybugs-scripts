@@ -100,7 +100,7 @@ for index, row in df.iterrows():
     except Exception as ex:
         print(f'{name} failed git reset!', ex)
         failed.append(name)
-    
+
     try:
         print(f'hg revert...')
 
@@ -118,13 +118,17 @@ for index, row in df.iterrows():
         diffsdir = scenariodir / 'diffs'
         if diffsdir.is_dir():
             rev_name = name.split('-')[-2]
-            cs = diffsdir.glob(f'**/*.c-{rev_name}')
-            for c in cs:
-                rpath = c.relative_to(diffsdir)
-                dst = projectdir / rpath.with_suffix('.c')
-                assert(dst.is_file())
-                print(f'*restoring {c} to {dst}')
-                shutil.copy(c, dst)
+            globexp = f'**/*.c-{rev_name}*'
+            cs = list(diffsdir.glob(globexp))
+            if len(cs) > 0:
+                for c in cs:
+                    rpath = c.relative_to(diffsdir)
+                    dst = projectdir / rpath.with_suffix('.c')
+                    assert(dst.is_file())
+                    print(f'*restoring {c} to {dst}')
+                    shutil.copy(c, dst)
+            else:
+                raise Exception(f'No .c diffs in {diffsdir} matching {globexp}')
         else:
             print(f'*skipping diffs reset {diffsdir}...')
     except Exception as ex:
