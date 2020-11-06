@@ -115,6 +115,12 @@ for index, row in df.iterrows():
 
     try:
         print(f'preprocessing...')
+        ppscript = projectdir / '..' / '..' / '..' / Path(f'fix-{project}.sh')
+        if ppscript.is_file():
+            print(f'*running preprocess script {ppscript}...')
+            subprocess.check_output(['bash', ppscript.relative_to(projectdir)], cwd=projectdir)
+        else:
+            print(f'*skipping preprocess {diffsdir}...')
     except Exception as ex:
         print(f'{name} failed preprocess!', ex)
         failed.append(name)
