@@ -2,3 +2,5 @@
 /scenarios
 /repos
 /.vscode
+__pycache__
+*.log
