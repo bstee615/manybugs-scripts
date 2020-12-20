@@ -2,3 +2,6 @@
 
 # gmp requires glibc (missing gnu/stubs-32.h)
 glibc-devel.i686 glibc-devel
+
+# lighttpd
+gdbm-devel

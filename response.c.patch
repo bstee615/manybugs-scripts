@@ -1,0 +1,19 @@
+Index: src/response.c
+===================================================================
+--- src/response.c	(revision 2785)
++++ src/response.c	(working copy)
+@@ -179,10 +179,10 @@
+ 		}
+ 		buffer_copy_string_len(envds->key, CONST_STR_LEN("SSL_CLIENT_S_DN_"));
+ 		buffer_append_string(envds->key, xobjsn);
+-		buffer_copy_string_len(
+-			envds->value,
+-			(const char *)xe->value->data, xe->value->length
+-		);
++		//buffer_copy_string_len(
++		//	envds->value,
++		//	(const char *)xe->value->data, xe->value->length
++		//);
+ 		/* pick one of the exported values as "authed user", for example
+ 		 * ssl.verifyclient.username   = "SSL_CLIENT_S_DN_UID" or "SSL_CLIENT_S_DN_emailAddress"
+ 		 */
