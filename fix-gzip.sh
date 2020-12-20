@@ -33,7 +33,7 @@ function fix_it()
     sed -i.bak 's@^_GL_WARN_ON_USE (gets@//_GL_WARN_ON_USE (gets@g' lib/stdio.h || quit
 
     # https://lists.gnu.org/archive/html/bug-gzip/2010-10/msg00004.html
-    sed -i.bak 's@if (gl_futimens (ofd, ofname, timespec)@if (fdutimens (ofd, ofname, timespec)@g' gzip.c || quit
+    sed -i.bak 's@if (gl_futimens (ofd, ofname, timespec)@if (/*gl_futimens (ofd, ofname, timespec)*/0@g' gzip.c || quit
 }
 
 if [ ! -d lib ] || [ ! -f gzip.c ]
