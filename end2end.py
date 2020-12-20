@@ -65,6 +65,7 @@ def download(versions):
 
 bugsdir = download(list(df['name']))
 FORCE = False
+CODESONAR = False
 failed = {}
 
 for index, row in df.iterrows():
@@ -149,6 +150,15 @@ for index, row in df.iterrows():
             print(f'*skipping preprocess {diffsdir}...')
     except Exception as ex:
         print(f'{name} failed preprocess!', ex)
+        failed[name]=ex
+        continue
+
+    try:
+        if CODESONAR:
+            print(f'running codesonar...')
+            subprocess.check_output(['codesonar', 'analyze', projectdir, '-project', f'/benjis/manybugs/{name}', 'make', '-C', projectdir])
+    except Exception as ex:
+        print(f'{name} failed codesonar!', ex)
         failed[name]=ex
         continue
 
