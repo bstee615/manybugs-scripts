@@ -1,5 +1,10 @@
 #!/bin/bash
-source "$(dirname $0)/common.sh"
+
+function quit()
+{
+    [ -z $1 ] && echo 'Error!' || echo $1
+    exit
+}
 
 if [ ! -f php.gif ]
 then
@@ -7,7 +12,7 @@ then
     exit 1
 fi
 
-cp ../../../README.GIT-RULES .
-cat ../../../libxml.patch | patch -p0 --forward
+cp $(dirname $0)/README.GIT-RULES .
+cat $(dirname $0)/libxml.patch | patch -p0 --forward
 ./configure || quit
 make clean || quit
