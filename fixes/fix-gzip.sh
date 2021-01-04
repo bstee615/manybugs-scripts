@@ -42,11 +42,11 @@ then
     exit
 fi
 
-echo Running ./configure...
-./configure &> /dev/null || quit "ERROR running ./configure!"
+#echo Running ./configure...
 echo Running make clean...
-make clean &> /dev/null || quit "ERROR running make clean!"
+make clean || quit "ERROR running make clean!"
 echo Running make and fixing library problems...
-(make &> /dev/null || fix_it) || quit "ERROR preparing for make!"
+./configure
+make &>/dev/null || fix_it
 
 echo "Now we're cookin. Ready to run 'make'!"

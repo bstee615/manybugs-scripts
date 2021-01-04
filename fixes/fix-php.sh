@@ -12,7 +12,6 @@ then
     exit 1
 fi
 
-cp $(dirname $0)/README.GIT-RULES .
-cat $(dirname $0)/libxml.patch | patch -p0 --forward
-./configure || quit
+cp $(dirname $0)/php/README.GIT-RULES .
+cat $(dirname $0)/php/libxml.patch | patch -p0 --forward
 make clean || quit
