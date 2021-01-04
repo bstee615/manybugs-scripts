@@ -1,0 +1,14 @@
+#!/bin/python3
+import xmltodict
+from pathlib import Path
+
+for f in Path().glob('*.xml'):
+
+    with f.open('r') as fd:
+        root = xmltodict.parse(fd.read())
+
+    warning = root['warning']
+
+    print(f"b {Path(warning['@filename']).name}:{warning['@line_number']}")
+    print(f"b {warning['@start_procedure']}")
+
