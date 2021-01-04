@@ -5,3 +5,8 @@ glibc-devel.i686 glibc-devel
 
 # lighttpd
 gdbm-devel
+glib2-devel
+libxml2-devel
+
+# python
+mercurial
