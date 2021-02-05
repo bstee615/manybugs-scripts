@@ -1,8 +1,12 @@
 #!/bin/python
 
-import os
 import sys
 from pathlib import Path
+
+"""
+Run inside the bug's project root.
+Run CodeSonar for a bug.
+"""
 
 if len(sys.argv) == 3:
     functional_non = sys.argv[1]

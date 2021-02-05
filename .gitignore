@@ -8,4 +8,6 @@ __pycache__
 notes.tsv
 logs
 /inputs
-
+/revisit
+/trigger
+/php-revisit

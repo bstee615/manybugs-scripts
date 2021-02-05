@@ -4,6 +4,10 @@ import subprocess
 from dl import download
 import shutil
 
+"""
+Not maintained
+"""
+
 df_tsv = Path('notes.tsv')
 df = pd.read_csv(df_tsv, delimiter='\t')
 # print(df)

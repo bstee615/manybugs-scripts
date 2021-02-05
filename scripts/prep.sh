@@ -1,5 +1,8 @@
 #!/bin/bash
-# Run with prep.sh <test-command> <scripts-dir e.g. manybugs-scripts/scripts> <base-dir outside of the bug name e.g. manybugs-scripts/scenarios/ which contains php-bug-XXX-YYY>
+# Usage: prep.sh <test-command> <scripts-dir e.g. manybugs-scripts/scripts> <base-dir outside of the bug name e.g. manybugs-scripts/scenarios/ which contains php-bug-XXX-YYY>
+# Prepares a scenario for debugging with GDB
+# Not maintained
+
 mkdir -p ../program-input
 
 echo "$1" > ../program-input/run-test.sh

@@ -4,7 +4,10 @@ import shutil
 from time import sleep
 import os
 
-# Load all links for php bugs
+"""
+Print all links for php bugs
+"""
+
 b = mechanize.Browser()
 b.open('https://repairbenchmarks.cs.umass.edu/ManyBugs/scenarios/')
 for link in b.links():

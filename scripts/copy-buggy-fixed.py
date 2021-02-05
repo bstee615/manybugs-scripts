@@ -4,6 +4,12 @@ from pathlib import Path
 import subprocess
 import shutil
 
+"""
+Run in a scenario directory
+Copy the project root and copy fixed and buggy files to folders fixed and buggy
+Not maintained
+"""
+
 me = Path().resolve()
 bugname = me.name
 fix = me / '..' / '..' / f'fix-{}.sh'

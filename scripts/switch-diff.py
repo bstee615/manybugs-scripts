@@ -4,6 +4,11 @@ from pathlib import Path
 import sys
 import shutil
 
+"""
+Run in or provide a path to the scenario directory
+Pull the buggy/fixed files as specified and copy them into the source directory
+"""
+
 if len(sys.argv) < 2:
     raise Exception('Usage: switch-diff <buggy|fixed> [cwd]')
 

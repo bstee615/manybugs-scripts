@@ -1,2 +1,3 @@
 #!/bin/bash
-LD_LIBRARY_PATH="$PWD/libtiff/.libs:$LD_LIBRARY_PATH" ./configure
+. $(basename $0)/envs.sh
+./configure

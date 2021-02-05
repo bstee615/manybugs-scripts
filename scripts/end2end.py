@@ -9,7 +9,10 @@ from time import sleep
 import os
 import sys
 
-# End-to-end prepare all ManyBugs benchmarks
+"""
+End-to-end prepare all ManyBugs benchmarks
+Not maintained
+"""
 
 df = pandas.read_csv('versions.csv', header=0)
 filtered = []

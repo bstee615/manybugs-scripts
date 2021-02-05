@@ -2,6 +2,11 @@
 import xmltodict
 from pathlib import Path
 
+"""
+Run in a scenario folder to parse the CodeSonar warning XML and print out GDB breakpoints
+for the fault location and the function where the warning path starts
+"""
+
 for f in Path().glob('*.xml'):
 
     with f.open('r') as fd:

@@ -3,6 +3,11 @@
 import requests
 import sys
 
+"""
+Usage: python3 dl.py <bugname>
+Downloads a ManyBugs bug scenario from umass's server
+"""
+
 bugname = sys.argv[1]
 filename = f'{bugname}.tar.gz'
 link = f'https://repairbenchmarks.cs.umass.edu/ManyBugs/scenarios/{filename}'
