@@ -7,6 +7,13 @@ glibc-devel.i686 glibc-devel
 gdbm-devel
 glib2-devel
 libxml2-devel
+uuid-devel
+libevent-devel
 
 # python
 mercurial
+
+# libtiff
+libacl-devel libcap-devel libattr-devel libcurl-devel openssl-devel
+expat-devel flex-devel pcre-devel
+libnsl2-devel openldap-devel libbsd-devel
