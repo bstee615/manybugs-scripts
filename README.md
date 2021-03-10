@@ -11,7 +11,9 @@ This contains scripts to configure and fix problems with building the benchmarks
 All are meant to be run inside the benchmark's project root, and directly modify the project files.
 
 `configure-XXX.sh` configures the benchmark with the correct options. Notably `-g -O0`.
+
 `fix-XXX.sh` applies patches to the benchmark to fix issues that arise from building with a modern toolchain.
+These fixes are adapted from the Dockerfiles included with the [ManyBugs](https://github.com/squaresLab/ManyBugs) bugzoo repo.
 
 ## `/scripts/` folder
 
