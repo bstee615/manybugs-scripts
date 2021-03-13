@@ -1,11 +1,5 @@
 #!/bin/bash
 
-function quit()
-{
-    [ -z $1 ] && echo 'Error!' || echo $1
-    exit
-}
-
-# Get wireshark ready for make
-echo Cleaning... && make clean || quit
-printf "all: ;\nclean: ;" > doc/Makefile
+patch -p1 -f < $(dirname $0)/wireshark/doc.patch
+svn upgrade
+svn revert $(cat ../bug-info/bugged-program.txt)

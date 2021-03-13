@@ -7,6 +7,8 @@ then
     exit 1
 fi
 
+git checkout $(cat ../bug-info/bugged-program.txt)
+
 replace_macros=`grep -Rl --include '*.c' -e '_IO_ftrylockfile' -e '_IO_ferror_unlocked' lib`
 echo "Replacing _IO_ftrylockfile and _IO_ferror_unlocked..."
 for f in $replace_macros
