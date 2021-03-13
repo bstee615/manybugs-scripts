@@ -4,7 +4,7 @@ rm -rf fixed-program.txt \
     compile.pl \
     coverage.* \
     coverage \
-    configuration-*
+    configuration-* \
     sanity \
     preprocessed \
     *debug* \
@@ -20,4 +20,4 @@ mv fault.lines bug-info
 mv bugged-program.txt bug-info
 
 cp test.sh.back test.sh
-sed -i.back "s@/root/mountpoint-genprog/genprog-many-bugs/$(cat bug-info/original-name)/@$(cat bug-info/original-name)@g" test.sh
+sed -i.back "s@/root/mountpoint-genprog/genprog-many-bugs/$(cat bug-info/original-name)/@$(cat bug-info/original-name)/@g" test.sh
