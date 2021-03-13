@@ -24,10 +24,14 @@ def pretty_up(root):
     configure_sh = fixes_dir / f'configure-{bugname}.sh'
     assert configure_sh.exists()
 
-    subprocess.run(['bash', clean_sh.absolute()], cwd=root.absolute())
-    subprocess.run(['bash', fix_sh.absolute()], cwd=(root / bugname).absolute())
-    subprocess.run(['bash', configure_sh.absolute()], cwd=(root / bugname).absolute())
-    subprocess.run(['make'], cwd=(root / bugname).absolute())
+    bug_root = root / bugname
+
+    with open(root / "clean.log", "w") as f:
+        subprocess.run(['bash', clean_sh.absolute()], cwd=root, stdout=f, stderr=subprocess.STDOUT, shell=True)
+    subprocess.run(['bash', fix_sh.absolute()], cwd=bug_root)
+    subprocess.run(['bash', configure_sh.absolute()], cwd=bug_root)
+    with open(bug_root / "make.log", "w") as f:
+        subprocess.run(['make', '-j', '4'], cwd=bug_root, stdout=f, stderr=subprocess.STDOUT, shell=True)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
