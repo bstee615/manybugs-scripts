@@ -7,7 +7,7 @@ Utility scripts written by Benjamin Steenhoek to work with the ManyBugs benchmar
 ## Useful scripts in `scripts/`
 `dl.py <bugname>`: Download bug scenarios into /bugs as .tar.gz's.
 `dl_multiple.py <bugname-regex>`: Download multiple scenarios by a regex matching the bug name.
-`unzip_and_rename.py <glob>`: Unzip scenarios and rename them to a friendlier name.
+`unzip_and_rename.py [glob]`: Unzip scenarios and rename them to a friendlier name. Default unzips all .tar.gz's in the current directory.
 `pretty_up.py <glob>`: Clean, fix, configure, and build bugs.
 `test-exes.sh <program-name> <args>`: Test executables with a given name using args
 
@@ -23,8 +23,8 @@ This is necessary because the ManyBugs benchmarks have coverage instrumentation 
 source activate.sh
 mkdir bugs
 cd bugs
-python ../scripts/dl_multiple.py 'gzip'
-python ../scripts/unzip_and_rename.py 'gzip*'
+python ../scripts/dl_multiple.py 'gzip|wireshark'
+python ../scripts/unzip_and_rename.py
 python ../scripts/pretty_up.py 'gzip/*'
 bash ../scripts/test-exes.sh gzip -h
 ```

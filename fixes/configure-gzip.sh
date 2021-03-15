@@ -1,5 +1,10 @@
 #!/bin/bash
 # Fix errors in gzip. Meant to be run inside the gzip project root (gzip-bug-$version/gzip).
+if [ ! "$(basename $PWD)" == 'gzip' ]
+then
+    echo FAIL
+    exit 1
+fi
 
 . $(dirname $0)/envs.sh
 

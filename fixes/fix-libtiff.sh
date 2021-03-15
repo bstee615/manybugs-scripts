@@ -1,17 +1,14 @@
 #!/bin/bash
 
-function quit()
-{
-    if [ -z $1 ]
-    then
-        echo 'Error!'
-    else
-        echo $1
-    fi
-    exit
-}
+# Fix errors in gzip. Meant to be run inside the gzip project root (gzip-bug-$version/gzip).
+if [ ! "$(basename $PWD)" == 'libtiff' ]
+then
+    echo FAIL
+    exit 1
+fi
+
+git checkout $(cat ../bug-info/bugged-program.txt)
 
 # Gets libtiff ready for configure
-echo Cleaning... && make clean &> /dev/null || quit
-echo Fixing test/Makefile... && sed -i.bak 's/^@am__EXEEXT_TRUE@\t/@am__EXEEXT_TRUE@:\t/g' test/Makefile || quit
-echo Ready for make!
+echo Fixing test/Makefile.in...
+sed -i.bak 's/^@am__EXEEXT_TRUE@\t/@am__EXEEXT_TRUE@:\t/g' test/Makefile.in

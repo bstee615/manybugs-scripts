@@ -23,7 +23,7 @@ def unzip_and_rename(glob):
 
         if not Path(bug_name).exists():
             print(f'Unzipping {z}')
-            subprocess.run(f'tar zxf {z}'.split())
+            subprocess.run(f'tar zxf {z}'.split(), check=True)
 
         # Rename unzipped folder
         print('renaming', bug_name, 'to', new_name)

@@ -4,8 +4,7 @@ import re
 import sys
 
 def pretty_up(root):
-    print(f'Cleaning, fixing, configuring, and building {root}')
-
+    print(f'Prettying up {root}')
     # Gather variables and sanity check
     original_name_file = root / 'bug-info' / 'original-name'
     assert original_name_file.exists()
@@ -26,12 +25,17 @@ def pretty_up(root):
 
     bug_root = root / bugname
 
+    print('Cleaning...')
     with open(root / "clean.log", "w") as f:
-        subprocess.run(['bash', clean_sh.absolute()], cwd=root, stdout=f, stderr=subprocess.STDOUT, shell=True)
-    subprocess.run(['bash', fix_sh.absolute()], cwd=bug_root)
-    subprocess.run(['bash', configure_sh.absolute()], cwd=bug_root)
+        subprocess.run(['bash', clean_sh.absolute()], cwd=root.absolute(), stdout=f, stderr=subprocess.STDOUT, check=True)
+    print('Fixing...')
+    with open(root / "fix.log", "w") as f:
+        subprocess.run(['bash', fix_sh.absolute()], cwd=bug_root.absolute(), stdout=f, stderr=subprocess.STDOUT, check=True)
+    print('Configuring...')
+    subprocess.run(['bash', configure_sh.absolute()], cwd=bug_root.absolute(), check=True)
+    print('Building...')
     with open(bug_root / "make.log", "w") as f:
-        subprocess.run(['make', '-j', '4'], cwd=bug_root, stdout=f, stderr=subprocess.STDOUT, shell=True)
+        subprocess.run(['make', '-j', '4'], cwd=bug_root.absolute(), stdout=f, stderr=subprocess.STDOUT, shell=True, check=True)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

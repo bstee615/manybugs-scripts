@@ -2,7 +2,6 @@ import pandas as pd
 from pathlib import Path
 from dl import download
 import sys
-import fnmatch
 
 """
 Download multiple scenarios according to a regex
