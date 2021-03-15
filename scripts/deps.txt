@@ -1,0 +1,18 @@
+# Comment out lines with #'s
+
+# 32-bit compilation
+glibc-devel.i686 libgcc.i686 libstdc++-devel.i686 ncurses-devel.i686
+
+# gmp requires glibc 32-bit (missing gnu/stubs-32.h)
+glibc-devel.i686 glibc-devel
+
+# lighttpd
+gdbm-devel
+glib2-devel
+libxml2-devel
+
+# python
+mercurial
+
+# wireshark
+elinks
