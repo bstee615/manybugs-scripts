@@ -1,10 +1,17 @@
 # Comment out lines with #'s
 
+# clang
+clang
+
+# stl
+glibc-devel libgcc libstdc++-devel ncurses-devel
+
 # 32-bit compilation
+# gmp requires glibc 32-bit (error missing gnu/stubs-32.h)
 glibc-devel.i686 libgcc.i686 libstdc++-devel.i686 ncurses-devel.i686
 
-# gmp requires glibc 32-bit (missing gnu/stubs-32.h)
-glibc-devel.i686 glibc-devel
+# gzip
+ncompress
 
 # libtiff
 libacl-devel libcap-devel libattr-devel libcurl-devel openssl-devel

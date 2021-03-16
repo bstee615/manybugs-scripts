@@ -14,6 +14,7 @@ All are meant to be run inside the benchmark's project root, and directly modify
 
 `fix-XXX.sh` applies patches to the benchmark to fix issues that arise from building with a modern toolchain.
 These fixes are adapted from the Dockerfiles included with the [ManyBugs](https://github.com/squaresLab/ManyBugs) bugzoo repo.
+**Note:** `fix` scripts sometimes operate on `.in` files, so it's recommended to re-`configure` after running it.
 
 ## `/scripts/` folder
 
