@@ -14,5 +14,5 @@ python() {
 export -f python
 
 make distclean &>/dev/null
-./autogen.sh &>/dev/null
-./configure --disable-warnings-as-errors PYTHON=/usr/bin/python2 &>/dev/null
+./autogen.sh &>autogen.sh.log
+./configure --disable-warnings-as-errors PYTHON=/usr/bin/python2 &>configure.log
