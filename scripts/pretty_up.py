@@ -43,5 +43,5 @@ if __name__ == '__main__':
         roots = Path.cwd().glob(glob)
     else:
         roots = [Path.cwd()]
-    for root in roots:
+    for root in sorted(roots):
         pretty_up(root)

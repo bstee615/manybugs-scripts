@@ -10,8 +10,8 @@ import sys
 def unzip_and_rename(glob):
     root = Path.cwd()
     destroot = Path.cwd()
-    zips = root.glob(glob)
-    for z in zips:
+    zips = [z for z in root.glob(glob) if z.is_file()]
+    for z in sorted(zips):
         bug_name = z.name.split('.')[0]
         
         # Prepare destination name
