@@ -16,6 +16,16 @@ All are meant to be run inside the benchmark's project root, and directly modify
 These fixes are adapted from the Dockerfiles included with the [ManyBugs](https://github.com/squaresLab/ManyBugs) bugzoo repo.
 **Note:** `fix` scripts sometimes operate on `.in` files, so it's recommended to re-`configure` after running it.
 
+## Example flow for using fix scripts
+
+```
+source activate.sh
+cd bugs/gzip/3fe0caeada-39a362ae9d/gzip
+fix-gzip.sh
+configure-gzip.sh
+make -j`nproc`
+```
+
 ## `/scripts/` folder
 
 `activate.sh` adds `scripts/` to your `PYTHONPATH` so that you can import scripts between eachother freely.
@@ -25,7 +35,7 @@ These fixes are adapted from the Dockerfiles included with the [ManyBugs](https:
 `dl_multiple.py <bugname-regex>`: Download multiple scenarios by a regex matching the bug name.
 `unzip_and_rename.py [glob]`: Unzip scenarios and rename them to a friendlier name. Default unzips all .tar.gz's in the current directory.
 `pretty_up.py <glob>`: Clean, fix, configure, and build bugs.
-`test-exes.sh <program-name> <args>`: Test executables with a given name using args
+`sanity-test.sh <program-name> <args>`: Test executables with a given name using args
 
 ## Old scripts in `scripts/`
 `tar.py`: Unpack scenarios into /scenarios.
