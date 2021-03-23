@@ -21,7 +21,8 @@ else:
 
 diffs = cwd / 'diffs'
 assert(diffs.is_dir())
-bugname = diffs.resolve().parent.name
+with open(diffs.resolve().parent / 'bug-info/original-name') as f:
+    bugname = f.read()
 name = bugname.split('-')[0]
 project = cwd / name
 
@@ -35,6 +36,6 @@ else:
 for c in diffs.glob(f'**/*.c-{rev_name}'):
     rpath = c.relative_to(diffs)
     dst = project / rpath.with_suffix('.c')
-    assert(dst.is_file())
     print('copying', c, '->', dst)
+    assert(dst.is_file())
     shutil.copy(c, dst)

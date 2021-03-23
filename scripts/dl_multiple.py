@@ -1,3 +1,4 @@
+#!/bin/python3
 import pandas as pd
 from pathlib import Path
 from dl import download
