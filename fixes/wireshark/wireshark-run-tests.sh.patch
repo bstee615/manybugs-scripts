@@ -1,0 +1,11 @@
+--- wireshark-run-tests.sh	2021-03-16 01:02:08.286703362 -0400
++++ wireshark-run-tests.sh	2021-03-16 01:02:12.268033262 -0400
+@@ -855,7 +855,7 @@
+ mkd5m_setup () {
+ rm -f ./testout.pcap 
+ touch ./testout.pcap 
+-chown root:root ./testout.pcap
++chown $USER:$USER ./testout.pcap
+ 
+ }
+ # clopts suite

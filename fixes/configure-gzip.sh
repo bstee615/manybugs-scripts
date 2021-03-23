@@ -12,5 +12,4 @@ export CFLAGS="-m32 $CFLAGS"
 export LDFLAGS="-m32 $LDFLAGS"
 export CXXFLAGS="-m32 $CXXFLAGS"
 
-make distclean &>/dev/null
 ./configure &>configure.log

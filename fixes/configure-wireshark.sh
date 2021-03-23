@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if [ ! "$(basename $PWD)" == 'wireshark' ]
 then
     echo FAIL
@@ -13,6 +14,5 @@ python() {
 }
 export -f python
 
-make distclean &>/dev/null
 ./autogen.sh &>autogen.sh.log
 ./configure --disable-warnings-as-errors PYTHON=/usr/bin/python2 &>configure.log
