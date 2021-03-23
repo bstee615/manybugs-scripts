@@ -26,6 +26,7 @@ glib2-devel
 libxml2-devel
 uuid-devel
 libevent-devel
+sqlite-devel
 
 # python
 mercurial
