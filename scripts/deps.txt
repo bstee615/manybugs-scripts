@@ -1,7 +1,9 @@
 # Comment out lines with #'s
 
-# clang
+# development tools
 clang
+git
+cmake
 
 # stl
 glibc-devel libgcc libstdc++-devel ncurses-devel
@@ -29,4 +31,6 @@ libevent-devel
 mercurial
 
 # wireshark
+svn perl-Pod-Html
 elinks
+gtk2-devel libpcap-devel
