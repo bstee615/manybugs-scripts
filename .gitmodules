@@ -1,0 +1,3 @@
+[submodule "vendor/autoconf"]
+	path = vendor/autoconf
+	url = git://git.savannah.gnu.org/autoconf.git
