@@ -9,6 +9,9 @@ fi
 
 git checkout $(cat ../bug-info/bugged-program.txt)
 
+wget https://raw.githubusercontent.com/gnutls/gnutls/gnutls_3_6_7/bootstrap -O bootstrap &>get-bootstrap.log
+./bootstrap &>bootstrap.log
+
 replace_macros=`grep -Rl --include '*.c' -e '_IO_ftrylockfile' -e '_IO_ferror_unlocked' lib`
 echo "Replacing _IO_ftrylockfile and _IO_ferror_unlocked..."
 for f in $replace_macros

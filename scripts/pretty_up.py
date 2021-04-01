@@ -3,6 +3,7 @@ import subprocess
 from pathlib import Path
 import re
 import sys
+import traceback
 
 def pretty_up(root, steps):
     print(f'Prettying up {root}')
@@ -40,7 +41,7 @@ def pretty_up(root, steps):
     if 'build' in steps:
         print('Building...')
         with open(bug_root / "make.log", "w") as f:
-            subprocess.run(['make', '-j', '4'], cwd=bug_root.absolute(), stdout=f, stderr=subprocess.STDOUT, shell=True, check=True)
+            subprocess.run(['make'], cwd=bug_root.absolute(), stdout=f, stderr=subprocess.STDOUT, shell=True, check=True)
 
 if __name__ == '__main__':
     default_steps = 'clean,fix,configure,build'.split(',')
@@ -54,5 +55,13 @@ if __name__ == '__main__':
                 print(f'Usage: {sys.argv[0]} <glob> [instructions]. instructions is a comma-delimited list containing any of {",".join(default_steps)}.')
     else:
         roots = [Path.cwd()]
+    failed = []
     for root in sorted(roots):
-        pretty_up(root, steps)
+        try:
+            pretty_up(root, steps)
+        except subprocess.CalledProcessError:
+            traceback.print_exc()
+            failed.append(root)
+    print('failed:')
+    for f in failed:
+        print(str(f))

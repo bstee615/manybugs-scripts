@@ -30,6 +30,7 @@ bugname=`cat bug-info/original-name | cut -d'-' -f1`
 make -C $bugname distclean
 
 # Fix occurrences of manybugs VM paths sprayed throughout the benchmark program
+manybugs_dir="/root/mountpoint-genprog/genprog-many-bugs/$(cat bug-info/original-name)"
 for b in `grep --include='*.manybugs.back' -Rl $manybugs_dir`
 do
     echo "Restoring $b"

@@ -18,7 +18,20 @@ ncompress
 # libtiff
 libacl-devel libcap-devel libattr-devel libcurl-devel openssl-devel
 expat-devel flex-devel pcre-devel
-libnsl2-devel openldap-devel libbsd-devel
+libnsl2-devel openldap-devel libbsd-devel zlib-devel
+
+libacl-devel.i686
+libcap-devel.i686
+libattr-devel.i686
+libcurl-devel.i686
+openssl-devel.i686
+expat-devel.i686
+flex-devel.i686
+pcre-devel.i686
+libnsl2-devel.i686
+openldap-devel.i686
+libbsd-devel.i686
+zlib-devel.i686
 
 # lighttpd
 gdbm-devel

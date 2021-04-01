@@ -32,15 +32,6 @@ do
             done
         fi
 
-        # Run buggy failed
-        if [ $option == 'bug-failures' ]
-        then
-            for i in `cat ../bug-info/bug-failures`
-            do
-                $tester_rel $i
-            done
-        fi
-
         # Run those that should be fixed by the fixed version
         if [ $option == 'bug-fixed' ]
         then
